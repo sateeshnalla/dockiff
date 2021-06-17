@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% csrf_token %}
+    {% if products %}
+        {% for product in products %}
+            <div class="card w-90">
+                <div class="card-body">
+                    <h5 class="card-title">Name :{{ product.name }} </h5>
+                    <h5 class="card-title">Price :{{  product.price }} </h5>
+                    <p class="card-text"> {{ product.short_description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <br>
+        <a class="btn btn-info btn-lg login-button" href="{% url 'register:productcreate' %}"> Create New Product </a>
+    {% else %}
+            <h4 class="card-title">Not Products created, please create one !<h4>
+            <a class="btn btn-info btn-block login-button" href="{% url 'register:productcreate' %}"> Create Product </a>
+    {% endif %}
+{% endblock %}  
